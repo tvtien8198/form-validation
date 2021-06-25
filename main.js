@@ -140,3 +140,36 @@ Validator.isConfirmation = (selector, getConfirmValue, message) => {
         }
     }
 }
+
+
+const tabsLink = document.querySelectorAll(".tab-link")
+
+const tabsPanel = document.querySelectorAll(".tab-panel")
+
+const tabLinkActive = document.querySelector(".tab-link.active")
+
+const line = document.querySelector(".line")
+
+line.style.left = tabLinkActive.offsetLeft + "px"
+
+line.style.width = tabLinkActive.offsetWidth + "px"
+
+tabsLink.forEach((tab, index) => {
+
+    const panel = tabsPanel[index]
+
+    tab.addEventListener("click", () => {
+
+        document.querySelector(".tab-link.active").classList.remove("active")
+
+        document.querySelector(".tab-panel.active").classList.remove("active")
+
+        line.style.left = tab.offsetLeft + "px"
+
+        line.style.width = tab.offsetWidth + "px"
+
+        tab.classList.add("active")
+
+        panel.classList.add("active")
+    })
+})
