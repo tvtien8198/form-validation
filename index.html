@@ -15,6 +15,9 @@
 
 <body>
   <div class="main">
+    <div class="background-wrapper">
+      <img src="./images/bg-1.jpg" alt="">
+    </div>
     <div class="tabs-content">
       <div class="tabs">
         <ul>
@@ -26,17 +29,21 @@
       </div>
       <div class="tabs-wrapper">
         <div class="tab-panel active">
-          <form action="" method="POST" class="form left-to-right" id="form-1">
-            <h3 class="heading">Thành viên đăng ký</h3>
-            <p class="desc">Cùng nhau học lập trình miễn phí tại ❤️</p>
-
-            <div class="spacer"></div>
-
+          <form action="" method="POST" class="form" id="form-1">
+            <h3 class="heading">Đăng Nhập</h3>
             <div class="form-group">
               <div class="box">
-                <input id="fullname" name="fullname" type="text" class="form-control">
-                <label for="">*masmdasmdm</label>
-                <i class='bx bxs-error-circle' ></i>
+                <input id="fullname" name="fullname" type="text" class="form-control" autocomplete="off">
+                <label for="fullname" class="label">Email Hoặc Số điện thoại</label>
+                <i class='bx bxs-error-circle'></i>
+              </div>
+              <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+              <div class="box">
+                <input id="password" name="password" type="password" class="form-control" autocomplete="off">
+                <label for="password">Mật Khẩu</label>
+                <i class='bx bxs-error-circle'></i>
               </div>
               <span class="form-message"></span>
             </div>
@@ -81,7 +88,16 @@
               <span class="form-message"></span>
             </div> -->
 
-            <button class="form-submit">Đăng ký</button>
+            <button class="form-submit">Đăng nhập</button>
+            <div class="form-help">
+              <div class="login-remember-me">
+                <input type="checkbox" name="" id="remember_me" checked>
+                <label for="remember_me">Ghi nhớ tôi</label>
+              </div>
+              <div class="helper">
+                <a href="#">Bạn Cần trợ giúp ?</a>
+              </div>
+            </div>
           </form>
         </div>
         <div class="tab-panel">
