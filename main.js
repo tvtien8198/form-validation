@@ -89,26 +89,23 @@ const Validator = (options) => {
             }
             const inputElements = formElement.querySelectorAll(rule.selector)
 
-            const errorIcon = document.querySelector(".bxs-error-circle")
-
-            const formControl = document.querySelector(".form-control")
+            const errorIcons = document.querySelectorAll(".bx")
 
             Array.from(inputElements).forEach(inputElement => {
                 inputElement.onblur = () => {
                     validate(inputElement, rule)
-                    if(formControl.value){
-                        errorIcon.classList.remove("invalid")
+                    if(inputElement.value != ""){
+                        inputElement.classList.add("has-text")
                     }else {
-                        errorIcon.classList.add("invalid")
-                        formControl.classList.remove("has-text")
+                        inputElement.classList.remove("has-text")
                     }
+                    
                 }
                 inputElement.oninput = () => {
                     const errorElement = getParent(inputElement,options.formGroupSelector).querySelector(options.errorSelector)
                     errorElement.innerText = ""
                     getParent(inputElement,options.formGroupSelector).classList.remove("invalid")
-                    errorIcon.classList.remove("invalid")
-                    formControl.classList.add("has-text")
+                    
                 }
             })
             
@@ -185,3 +182,4 @@ tabsLink.forEach((tab, index) => {
         panel.classList.add("active")
     })
 })
+
