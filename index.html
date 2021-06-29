@@ -92,16 +92,117 @@
             <div class="form-help">
               <div class="login-remember-me">
                 <input type="checkbox" name="" id="remember_me" checked>
-                <label for="remember_me">Ghi nhớ tôi</label>
+                <label for="remember_me">
+                  <span>Ghi nhớ tôi</span>
+                </label>
               </div>
               <div class="helper">
                 <a href="#">Bạn Cần trợ giúp ?</a>
               </div>
             </div>
+            <div class="form-other">
+              <div class="signin-fb">
+                <img src="./images/fb.png" alt="">
+                <span>Đăng nhập bằng tài khoản Facebook</span>
+              </div>
+              <div class="signup-now">
+                Bạn mới tham gia Netflix?
+                <a href="#">Đăng ký Ngay</a>
+              </div>
+              <p>Trang này được Google reCAPTCHA bảo vệ để đảm bảo bạn không phải là robot.<a href="#">Tìm hiểu
+                  thêm.</a></p>
+            </div>
           </form>
         </div>
         <div class="tab-panel">
-          <form action="" class="form left-to-right"> 2</form>
+          <form action="" class="form-fb" id="form-2">
+            <h3 class="heading">Dang ky</h3>
+            <div class="flex-name">
+              <div class="form-group">
+                <div class="box">
+                  <input id="firstname" name="firstname" type="text" class="form-control" autocomplete="off">
+                  <label for="firstname" class="label">Ho</label>
+                  <i class='bx bxs-error-circle'></i>
+                </div>
+                <span class="form-message"></span>
+              </div>
+              <div class="form-group">
+                <div class="box">
+                  <input id="lastname" name="lastname" type="text" class="form-control" autocomplete="off">
+                  <label for="lastname" class="label">Ten</label>
+                  <i class='bx bxs-error-circle'></i>
+                </div>
+                <span class="form-message"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="box">
+                <input id="phoneandemail" name="phoneandemail" type="text" class="form-control" autocomplete="off">
+                <label for="phoneandemail" class="label">so dien thoai hoac email</label>
+                <i class='bx bxs-error-circle'></i>
+              </div>
+              <span class="form-message"></span>
+            </div>
+            <div class="form-group">
+              <div class="box">
+                <input id="newpassword" name="newpassword" type="text" class="form-control" autocomplete="off">
+                <label for="newpassword" class="label">mat khau moi</label>
+                <i class='bx bxs-error-circle'></i>
+              </div>
+              <span class="form-message"></span>
+            </div>
+            <div class="dayofbirth">
+              <div class="form-group">
+                <select name="day" id="day" class="form-select">
+                  <option value="">Ngay</option>
+                  <option value="hanoi">Ha noi</option>
+                  <option value="nhatrang">Nha Trang</option>
+                  <option value="hochiminh">Ho Chi Minh</option>
+                </select>
+                <span class="form-message"></span>
+              </div>
+              <div class="form-group">
+                <select name="month" id="month" class="form-select">
+                  <option value="">Thang</option>
+                  <option value="hanoi">Ha noi</option>
+                  <option value="nhatrang">Nha Trang</option>
+                  <option value="hochiminh">Ho Chi Minh</option>
+                </select>
+                <span class="form-message"></span>
+              </div>
+              <div class="form-group">
+                <select name="year" id="year" class="form-select">
+                  <option value="">Nam</option>
+                  <option value="hanoi">Ha noi</option>
+                  <option value="nhatrang">Nha Trang</option>
+                  <option value="hochiminh">Ho Chi Minh</option>
+                </select>
+                <span class="form-message"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="gender-wrapper">
+                <div class="gender">
+                  <p>Nam</p>
+                  <input name="gender" type="radio" class="form-radio" value="male">
+                </div>
+                <div class="gender">
+                  <p>Nu</p>
+                  <input name="gender" type="radio" class="form-radio" value="female">
+                </div>
+                <div class="gender">
+                  <p>Tuy Chinh</p>
+                  <input name="gender" type="radio" class="form-radio" value="custom">
+                </div>
+                <span class="form-message"></span>
+              </div>
+            </div>
+            <p>Bằng cách nhấp vào Đăng ký, bạn đồng ý với <a href="#"
+                target="_blank" rel="nofollow">Điều khoản</a>, <a href="#"
+                target="_blank" rel="nofollow">Chính sách dữ liệu</a> và <a href="#">Chính sách cookie</a> của chúng tôi. Bạn có thể nhận
+              được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.</p>
+              <button class="form-submit">Dang Ky</button>
+          </form>
 
         </div>
         <div class="tab-panel">
