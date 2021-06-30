@@ -89,22 +89,27 @@ const Validator = (options) => {
             }
             const inputElements = formElement.querySelectorAll(rule.selector)
 
-            const errorIcons = document.querySelectorAll(".bx")
-
             Array.from(inputElements).forEach(inputElement => {
+
+                const parentInputElement  = inputElement.parentElement
+
+                const errorIcon = parentInputElement.querySelector(".fa-exclamation-circle")
+
                 inputElement.onblur = () => {
                     validate(inputElement, rule)
                     if(inputElement.value != ""){
                         inputElement.classList.add("has-text")
                     }else {
                         inputElement.classList.remove("has-text")
+                        errorIcon.classList.add("invalid")
+                        
                     }
-                    
                 }
                 inputElement.oninput = () => {
                     const errorElement = getParent(inputElement,options.formGroupSelector).querySelector(options.errorSelector)
                     errorElement.innerText = ""
                     getParent(inputElement,options.formGroupSelector).classList.remove("invalid")
+                    errorIcon.classList.remove("invalid")
                     
                 }
             })
@@ -127,7 +132,17 @@ Validator.isEmail = (selector, message) => {
         selector: selector,
         test(value) {
             const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
-            return regex.test(value) ? undefined : message || "Truong nay phai la Email! "
+            return regex.test(value) ? undefined : message || "Trường này phải là Email! "
+        }
+    }
+}
+
+Validator.isPhone = (selector, message) => {
+    return {
+        selector: selector,
+        test(value) {
+            const regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/
+            return regex.test(value) ? undefined : message || "Trường này phải là Số Điện thoại! "
         }
     }
 }
@@ -136,7 +151,7 @@ Validator.minLength = (selector, min, message) => {
     return {
         selector: selector,
         test(value) {
-            return value.length >= min ? undefined : message || `Vui long nhap toi thieu ${min} Ky tu`
+            return value.length >= min ? undefined : message || `Vui Lòng nhập tối thiểu ${min} Ký tự`
         }
     }
 }
@@ -146,6 +161,17 @@ Validator.isConfirmation = (selector, getConfirmValue, message) => {
         selector: selector,
         test(value) {
             return value === getConfirmValue() ? undefined : message || " Gia tri nhap khong chinh xac"
+        }
+    }
+}
+
+Validator.isEmailAndPhone = (selector, message) => {
+    return {
+        selector: selector,
+        test(value) {
+            const rePhone = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/
+            const reEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return rePhone.test(value) || reEmail.test(value) ? undefined : message || "Trường này phải là Email hoặc Số điện thoại! "
         }
     }
 }
