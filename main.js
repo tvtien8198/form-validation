@@ -101,17 +101,18 @@ const Validator = (options) => {
                         inputElement.classList.add("has-text")
                     }else {
                         inputElement.classList.remove("has-text")
-                        errorIcon.classList.add("invalid")
-                        
+                        errorIcon.classList.add("invalid")  
                     }
                 }
                 inputElement.oninput = () => {
                     const errorElement = getParent(inputElement,options.formGroupSelector).querySelector(options.errorSelector)
                     errorElement.innerText = ""
                     getParent(inputElement,options.formGroupSelector).classList.remove("invalid")
-                    errorIcon.classList.remove("invalid")
-                    
+                    if(errorIcon) {
+                        errorIcon.classList.remove("invalid")
+                    }                    
                 }
+
             })
             
         })

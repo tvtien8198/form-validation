@@ -58,6 +58,7 @@ a {
 }
 
 ul .tab-link {
+  cursor: pointer;
   font-size: 2rem;
   text-align: center;
   padding: 16px 20px;
@@ -169,6 +170,7 @@ ul .tab-link:last-child {
   visibility: hidden;
   color: #e87c03;
   cursor: pointer;
+  transition: .3s all ease-in-out;
 }
 .box .fa.invalid,
 .box .fas.invalid {
