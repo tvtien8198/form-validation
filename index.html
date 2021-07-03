@@ -74,7 +74,7 @@
           </form>
         </div>
         <div class="tab-panel">
-          <form action="" class="form-fb" id="form-2">
+          <form action="" class="form-2" id="form-2">
             <div class="flex-name">
               <div class="form-group">
                 <div class="box">
@@ -221,23 +221,45 @@
 
         </div>
         <div class="tab-panel">
-          <form action="" class="form">
+          <form action="" class="form-3">
             <h3 class="heading">Đăng Ký</h3>
             <div class="form-group">
               <div class="box">
-                <input id="fnameandlname" name="fnameandlname" type="text" class="form-control" autocomplete="off">
-                <label for="fnameandlname" class="label">Họ và tên</label>
+                <input id="fnameandlname" name="fnameandlname" type="text" class="form-control">
+                <label for="fnameandlname" class="label">Họ và Tên</label>
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+              <span class="form-message"></span>
+            </div>
+            <div class="flex-name">
+              <div class="form-group">
+                <div class="box">
+                  <input id="age" name="age" type="date" class="form-control-date">
+                </div>
+                <span class="form-message"></span>
+              </div>
+              <div class="form-group">
+                <div class="box">
+                  <input id="phone" name="phone" type="text" class="form-control" autocomplete="off">
+                  <label for="phone" class="label">Số Điện thoại</label>
+                  <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <span class="form-message"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="box">
+                <input id="mail-f3" name="mail-f3" type="text" class="form-control" autocomplete="off">
+                <label for="mail-f3" class="label">Email</label>
                 <i class="fas fa-exclamation-circle"></i>
               </div>
               <span class="form-message"></span>
             </div>
             <div class="form-group">
-              <div class="box">
-                <input id="fnameandlname" name="fnameandlname" type="text" class="form-control" autocomplete="off">
-                <label for="fnameandlname" class="label">Họ và tên</label>
-                <i class="fas fa-exclamation-circle"></i>
-              </div>
-              <span class="form-message"></span>
+              <label for="avatar" class="label-av">
+                <input id="avatar" name="avatar" type="file" class="form-control-av">
+                <span class="file-custom"></span>
+              </label>
             </div>
             <div class="form-group">
               <ul class="ks-cboxtags">
@@ -247,6 +269,7 @@
                 <li><input type="checkbox" id="checkboxFour" value="Moondancer"><label for="checkboxFour">Moondancer</label></li>
               </ul>
             </div>
+            
           </form>
         </div>
       </div>
