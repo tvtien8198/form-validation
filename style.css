@@ -316,13 +316,50 @@ p a {
   color: #b9b5b5;
   font-size: 16px;
 }
-.gender .form-radio{
-
-}
 .form-fb p {
   font-size: 1.2rem;
   color: #b9b5b5;
   font-weight: 500;
+}
+.label-f3 {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  cursor: pointer;
+}
+.form-control-f3 {
+  width: 100%;
+  margin: 0;
+  opacity: 0;
+}
+.file-custom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  font-size: 16px;
+  height: 50px;
+  padding: 16px;
+  border-radius: 5px;
+  background-color: #454545;
+  color: #b9b5b5;
+}
+.file-custom::before{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  display: block;
+  content: "Browse";
+  padding: 16px;
+  color: #555;
+  background-color: #eee;
+  border-radius: 0 5px 5px 0;
+}
+.file-custom::after{
+  content: "Choose file...";
 }
 ul.ks-cboxtags {
   list-style: none;
