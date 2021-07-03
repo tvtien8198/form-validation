@@ -260,7 +260,8 @@ ul .tab-link:last-child {
 p a {
   color: var(--color-text);
 }
-.form-fb {
+.form-3,
+.form-2 {
   width: 100%;
   min-height: 100px;
   padding: 60px 30px 40px;
@@ -270,8 +271,8 @@ p a {
   align-self: center;
   box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.1);
 }
-
-.form-fb .heading {
+.form-3 .heading,
+.form-2 .heading {
   font-size: 3rem;
   color: #fff;
   margin-bottom: 28px;
@@ -321,16 +322,27 @@ p a {
   color: #b9b5b5;
   font-weight: 500;
 }
-.label-f3 {
+.label-av {
   position: relative;
   display: inline-block;
   height: 50px;
   cursor: pointer;
 }
-.form-control-f3 {
+.form-control-av {
   width: 100%;
   margin: 0;
   opacity: 0;
+}
+.form-control-date {
+  width: 100%;
+  height: 50px;
+  padding: 16px;
+  background-color: #454545;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  outline: none;
+  font-size: 1.7rem;
 }
 .file-custom {
   position: absolute;
