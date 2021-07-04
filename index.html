@@ -111,7 +111,8 @@
             </div>
             <div class="form-group">
               <div class="box">
-                <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" autocomplete="off">
+                <input id="password_confirmation" name="password_confirmation" type="password" class="form-control"
+                  autocomplete="off">
                 <label for="password_confirmation" class="label">Mật khẩu nhập lại</label>
                 <i class="fas fa-exclamation-circle"></i>
               </div>
@@ -221,69 +222,65 @@
 
         </div>
         <div class="tab-panel">
-          <form action="" class="form-3">
-            <h3 class="heading">Đăng Ký</h3>
+          <form action="" class="form-3" id="form-3">
+            <h3 class="heading">Phiếu gửi thông tin</h3>
             <div class="form-group">
-              <div class="box">
-                <input id="fnameandlname" name="fnameandlname" type="text" class="form-control">
-                <label for="fnameandlname" class="label">Họ và Tên</label>
-                <i class="fas fa-exclamation-circle"></i>
+              <div class="box-3">
+                <input id="fullname3" name="fullname3" placeholder=" " type="text" class="form-control-3">
+                <label for="fullname3" class="label-3">Họ và Tên</label>
               </div>
               <span class="form-message"></span>
             </div>
             <div class="flex-name">
               <div class="form-group">
                 <div class="box">
-                  <input id="age" name="age" type="date" class="form-control-date">
+                  <input id="dayofbirth3" name="dayofbirth" type="date" class="form-control-date">
                 </div>
                 <span class="form-message"></span>
               </div>
               <div class="form-group">
-                <div class="box">
-                  <input id="phone" name="phone" type="text" class="form-control" autocomplete="off">
-                  <label for="phone" class="label">Số Điện thoại</label>
-                  <i class="fas fa-exclamation-circle"></i>
+                <div class="box-3">
+                  <input id="phone3" name="phone3" placeholder=" " type="text" class="form-control-3">
+                  <label for="phone3" class="label-3">Số điện thoại</label>
                 </div>
                 <span class="form-message"></span>
               </div>
             </div>
             <div class="form-group">
-              <div class="box">
-                <input id="mail-f3" name="mail-f3" type="text" class="form-control" autocomplete="off">
-                <label for="mail-f3" class="label">Email</label>
-                <i class="fas fa-exclamation-circle"></i>
+              <div class="box-3">
+                <input id="email3" name="email3" placeholder=" " type="text" class="form-control-3">
+                <label for="email3" class="label-3">Email</label>
               </div>
-              <div class="form-group">
-                <div class="box">
-                  <input id="phone" name="phone" type="text" class="form-control" autocomplete="off">
-                  <label for="phone" class="label">So Dien thoai</label>
-                  <i class="fas fa-exclamation-circle"></i>
-                </div>
-                <span class="form-message"></span>
-              </div>
+              <span class="form-message"></span>
             </div>
-
             <div class="form-group">
-              <label for="avatar" class="label-f3">
-                <input id="avatar" name="avatar" type="file" class="form-control-f3">
-                <span class="file-custom"></span>
-              </label>
+              <div class="box-3">
+                <input id="address3" name="address3" placeholder=" " type="text" class="form-control-3">
+                <label for="address3" class="label-3">Địa Chỉ</label>
+              </div>
+              <span class="form-message"></span>
             </div>
             <div class="form-group">
               <label for="avatar" class="label-av">
                 <input id="avatar" name="avatar" type="file" class="form-control-av">
-                <span class="file-custom"></span>
+                <span class="file-custom">Choose file</span>
               </label>
+              <span class="form-message"></span>
             </div>
             <div class="form-group">
               <ul class="ks-cboxtags">
-                <li><input type="checkbox" id="checkboxOne" value="Rainbow Dash"><label for="checkboxOne">Rainbow Dash</label></li>
-                <li><input type="checkbox" id="checkboxTwo" value="Cotton Candy" checked><label for="checkboxTwo">Cotton Candy</label></li>
-                <li><input type="checkbox" id="checkboxThree" value="Rarity" checked><label for="checkboxThree">Rarity</label></li>
-                <li><input type="checkbox" id="checkboxFour" value="Moondancer"><label for="checkboxFour">Moondancer</label></li>
+                <li><input name="1112" type="checkbox" id="checkboxOne" value="Rainbow Dash"><label for="checkboxOne">Rainbow
+                    Dash</label></li>
+                <li><input name="1112"  type="checkbox" id="checkboxTwo" value="Cotton Candy"><label for="checkboxTwo">Cotton
+                    Candy</label></li>
+                <li><input name="1112"  type="checkbox" id="checkboxThree" value="Rarity"><label
+                    for="checkboxThree">Rarity</label></li>
+                <li><input name="1112"  type="checkbox" id="checkboxFour" value="Moondancer"><label
+                    for="checkboxFour">Moondancer</label></li>
               </ul>
+              <span class="form-message"></span>
             </div>
-            
+            <button class="form-submit-3">Gửi Thông tin</button>
           </form>
         </div>
       </div>
@@ -322,6 +319,23 @@
         Validator.isConfirmation('#password_confirmation', () => {
           return document.querySelector("#form-2 #newpassword").value
         }, 'Mật khẩu nhập lại không chính xác'),
+      ],
+      onSubmit(data) {
+        console.log(data)
+      }
+    })
+    Validator({
+      form: '#form-3',
+      formGroupSelector: '.form-group',
+      errorSelector: '.form-message',
+      rules: [
+        Validator.isRequired('#fullname3'),
+        Validator.isRequired('#dayofbirth3'),
+        Validator.isRequired('#phone3'),
+        Validator.isRequired('#email3'),
+        Validator.isRequired('#address3'),
+        Validator.isRequired('#avatar'),
+        Validator.isRequired('input[name="1112"]'),
       ],
       onSubmit(data) {
         console.log(data)
