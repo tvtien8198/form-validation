@@ -186,6 +186,7 @@ const tabLinkActive = document.querySelector(".tab-link.active")
 
 const line = document.querySelector(".line")
 
+
 line.style.left = tabLinkActive.offsetLeft + "px"
 
 line.style.width = tabLinkActive.offsetWidth + "px"
@@ -209,4 +210,13 @@ tabsLink.forEach((tab, index) => {
         panel.classList.add("active")
     })
 })
-
+const fileBtn = document.querySelector(".file-custom")
+fileBtn.onclick = () => {
+    const file = document.querySelector("#avatar")
+    file.onchange = (e) => {
+        const filenames = e.target.files
+        for(let i = 0; i < filenames.length; i++) {
+            fileBtn.textContent = fileBtn.textContent.replace('Choose file', filenames[i].name)
+        }
+    }
+}
