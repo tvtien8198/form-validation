@@ -1,11 +1,11 @@
 const Validator = (options) => {
     const SelectorRules = {}
-    
+
     const formElement = document.querySelector(options.form)
-    
+
     const getParent = (element, selector) => {
-        while(element.parentElement) {
-            if(element.parentElement.matches(selector)){
+        while (element.parentElement) {
+            if (element.parentElement.matches(selector)) {
                 return element.parentElement
             }
             element = element.parentElement
@@ -13,12 +13,12 @@ const Validator = (options) => {
     }
 
     const validate = (inputElement, rule) => {
-        
+
         let errorMessage
-        const errorElement = getParent(inputElement,options.formGroupSelector).querySelector(options.errorSelector)
+        const errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector)
         const rules = SelectorRules[rule.selector]
-        for(let i = 0; i < rules.length; i++) {
-            switch(inputElement.type){
+        for (let i = 0; i < rules.length; i++) {
+            switch (inputElement.type) {
                 case 'radio':
                 case 'checkbox':
                     errorMessage = rules[i](
@@ -28,93 +28,98 @@ const Validator = (options) => {
                 default:
                     errorMessage = rules[i](inputElement.value)
             }
-            if(errorMessage) break
+            if (errorMessage) break
         }
-        if(errorMessage) {
+        if (errorMessage) {
             errorElement.innerText = errorMessage
-            getParent(inputElement,options.formGroupSelector).classList.add("invalid")
-        }else {
+            getParent(inputElement, options.formGroupSelector).classList.add("invalid")
+        } else {
             errorElement.innerText = ""
-            getParent(inputElement,options.formGroupSelector).classList.remove("invalid")
+            getParent(inputElement, options.formGroupSelector).classList.remove("invalid")
         }
         return !errorMessage
     }
-    if(formElement) {
+    if (formElement) {
         formElement.onsubmit = (e) => {
-           e.preventDefault() 
-           let isFormValid = true
-           options.rules.forEach(rule => {
-               const inputElement = formElement.querySelector(rule.selector)
-               let isValid = validate(inputElement, rule)
-               if(!isValid) {
-                   isFormValid = false
-               }
-           })
-            
-           if(isFormValid) {
-               if(typeof options.onSubmit === 'function'){
-                const enableInput = formElement.querySelectorAll('[name]')
-                const formValues = Array.from(enableInput).reduce((values, input) => {
-                    switch(input.type){
-                        case 'radio':
-                            values[input.name] = formElement.querySelector('input[name="'+ input.name +'"]:checked').value
-                            break
-                        case 'checkbox':
-                            if(!input.matches(':checked')) return values
-                            if(!Array.isArray(values[input.name])){
-                                values[input.name] = []
-                            }
-                            values[input.name].push()
-                            break
-                        case 'file':
-                            values[input.name] = input.files
-                            break
-                        default:
-                            values[input.name] = input.value
-                    }
-                    return values
-                }, {})
+            e.preventDefault()
+            let isFormValid = true
+            options.rules.forEach(rule => {
+                const inputElement = formElement.querySelector(rule.selector)
+                let isValid = validate(inputElement, rule)
+                if (!isValid) {
+                    isFormValid = false
+                }
+            })
 
-                options.onSubmit(formValues)
-               }
-           }else{
-               console.log("co loi")
-           }
+            if (isFormValid) {
+                if (typeof options.onSubmit === 'function') {
+                    const enableInput = formElement.querySelectorAll('[name]')
+                    const formValues = Array.from(enableInput).reduce((values, input) => {
+                        switch (input.type) {
+                            case 'radio':
+                                values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value
+                                break
+                            case 'checkbox':
+                                if (!input.matches(':checked')) {
+                                    values[input.name] = '';
+                                    return values;
+                                }
+                                if (!Array.isArray(values[input.name])) {
+                                    values[input.name] = [];
+                                }
+                                values[input.name].push(input.value);
+                                break;
+                            case 'file':
+                                values[input.name] = input.files
+                                break
+                            default:
+                                values[input.name] = input.value
+                        }
+                        return values
+                    }, {})
+
+                    options.onSubmit(formValues)
+                }
+            } else {
+                console.log("co loi")
+            }
         }
         options.rules.forEach(rule => {
-            if(Array.isArray(SelectorRules[rule.selector])){
+            if (Array.isArray(SelectorRules[rule.selector])) {
                 SelectorRules[rule.selector].push(rule.test)
-            }else {
+            } else {
                 SelectorRules[rule.selector] = [rule.test]
             }
             const inputElements = formElement.querySelectorAll(rule.selector)
 
             Array.from(inputElements).forEach(inputElement => {
 
-                const parentInputElement  = inputElement.parentElement
+                const parentInputElement = inputElement.parentElement
 
                 const errorIcon = parentInputElement.querySelector(".fa-exclamation-circle")
 
                 inputElement.onblur = () => {
                     validate(inputElement, rule)
-                    if(inputElement.value != ""){
+                    if (inputElement.value != "") {
                         inputElement.classList.add("has-text")
-                    }else {
+                    } else {
                         inputElement.classList.remove("has-text")
-                        errorIcon.classList.add("invalid")  
+                        if (errorIcon) {
+                            errorIcon.classList.add("invalid")
+                        }
                     }
                 }
                 inputElement.oninput = () => {
-                    const errorElement = getParent(inputElement,options.formGroupSelector).querySelector(options.errorSelector)
+                    const errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector)
                     errorElement.innerText = ""
-                    getParent(inputElement,options.formGroupSelector).classList.remove("invalid")
-                    if(errorIcon) {
+                    getParent(inputElement, options.formGroupSelector).classList.remove("invalid")
+                    if (errorIcon) {
                         errorIcon.classList.remove("invalid")
-                    }                    
+                    }
                 }
 
             })
-            
+
         })
     }
 }
@@ -132,7 +137,7 @@ Validator.isEmail = (selector, message) => {
     return {
         selector: selector,
         test(value) {
-            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
+            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             return regex.test(value) ? undefined : message || "Trường này phải là Email! "
         }
     }
@@ -215,8 +220,8 @@ fileBtn.onclick = () => {
     const file = document.querySelector("#avatar")
     file.onchange = (e) => {
         const filenames = e.target.files
-        for(let i = 0; i < filenames.length; i++) {
-            fileBtn.textContent = fileBtn.textContent.replace('Choose file', filenames[i].name)
+        for (let i = 0; i < filenames.length; i++) {
+            fileBtn.textContent = fileBtn.textContent.replace('Chọn Avatar', filenames[i].name)
         }
     }
 }
