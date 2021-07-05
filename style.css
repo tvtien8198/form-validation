@@ -159,6 +159,8 @@ ul .tab-link:last-child {
   position: relative;
   width: 100%;
 }
+.box-3 .fa,
+.box-3 .fas,
 .box .fa,
 .box .fas {
   position: absolute;
@@ -172,6 +174,9 @@ ul .tab-link:last-child {
   cursor: pointer;
   transition: .3s all ease-in-out;
 }
+
+.box-3 .fa.invalid,
+.box-3 .fas.invalid,
 .box .fa.invalid,
 .box .fas.invalid {
   opacity: 1;
@@ -369,6 +374,9 @@ p a {
   outline: none;
   font-size: 1.7rem;
 }
+.form-control-date::-webkit-calendar-picker-indicator{
+  margin-left: -5px;
+}
 .file-custom {
   position: absolute;
   top: 0;
@@ -396,11 +404,15 @@ p a {
   color: #fff;
   background-color: rgba(112, 111, 211,1.0);
 }
-/* .file-custom::after{
-  content: "Choose file...";
-} */
 ul.ks-cboxtags {
   list-style: none;
+}
+.ks-cboxtags h3 { 
+  font-size: 16px;
+  padding-left: 16px;
+  margin: -10px 0 10px 0;
+  color: rgba(112, 111, 211,1.0);
+  font-weight: 400;
 }
 ul.ks-cboxtags li{
 display: inline;
@@ -494,6 +506,15 @@ opacity: 0;
   top: 0;
   left: 14px;
   display: inline-block;
+  background-color: #fff;
+  padding: 0 10px;
+}
+.label-date {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  color: rgba(112, 111, 211,1.0);
+  font-size: 16px;
   background-color: #fff;
   padding: 0 10px;
 }

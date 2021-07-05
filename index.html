@@ -228,6 +228,7 @@
               <div class="box-3">
                 <input id="fullname3" name="fullname3" placeholder=" " type="text" class="form-control-3">
                 <label for="fullname3" class="label-3">Họ và Tên</label>
+                <i class="fas fa-exclamation-circle"></i>
               </div>
               <span class="form-message"></span>
             </div>
@@ -242,6 +243,7 @@
                 <div class="box-3">
                   <input id="phone3" name="phone3" placeholder=" " type="text" class="form-control-3">
                   <label for="phone3" class="label-3">Số điện thoại</label>
+                  <i class="fas fa-exclamation-circle"></i>
                 </div>
                 <span class="form-message"></span>
               </div>
@@ -250,6 +252,7 @@
               <div class="box-3">
                 <input id="email3" name="email3" placeholder=" " type="text" class="form-control-3">
                 <label for="email3" class="label-3">Email</label>
+                <i class="fas fa-exclamation-circle"></i>
               </div>
               <span class="form-message"></span>
             </div>
@@ -257,29 +260,41 @@
               <div class="box-3">
                 <input id="address3" name="address3" placeholder=" " type="text" class="form-control-3">
                 <label for="address3" class="label-3">Địa Chỉ</label>
+                <i class="fas fa-exclamation-circle"></i>
               </div>
               <span class="form-message"></span>
             </div>
             <div class="form-group">
               <label for="avatar" class="label-av">
                 <input id="avatar" name="avatar" type="file" class="form-control-av">
-                <span class="file-custom">Choose file</span>
+                <span class="file-custom">Chọn Avatar</span>
               </label>
               <span class="form-message"></span>
             </div>
             <div class="form-group">
               <ul class="ks-cboxtags">
-                <li><input name="1112" type="checkbox" id="checkboxOne" value="Rainbow Dash"><label for="checkboxOne">Rainbow
-                    Dash</label></li>
-                <li><input name="1112"  type="checkbox" id="checkboxTwo" value="Cotton Candy"><label for="checkboxTwo">Cotton
-                    Candy</label></li>
-                <li><input name="1112"  type="checkbox" id="checkboxThree" value="Rarity"><label
-                    for="checkboxThree">Rarity</label></li>
-                <li><input name="1112"  type="checkbox" id="checkboxFour" value="Moondancer"><label
-                    for="checkboxFour">Moondancer</label></li>
+                <h3>Kỹ năng</h3>
+                <li><input name="skill" type="checkbox" id="html5" value="HTML5" checked><label
+                    for="html5">HTML5</label></li>
+                <li><input name="skill" type="checkbox" id="css3" value="CSS3"><label for="css3">CSS3</label></li>
+                <li><input name="skill" type="checkbox" id="javascript" value="JavaScript"><label
+                    for="javascript">JavaScript</label></li>
+                <li><input name="skill" type="checkbox" id="php" value="PHP"><label for="php">PHP</label></li>
+                <li><input name="skill" type="checkbox" id="python" value="Python"><label for="python">Python</label>
+                </li>
+                <li><input name="skill" type="checkbox" id="git" value="Git"><label for="git">Git</label></li>
+                <li><input name="skill" type="checkbox" id="mysql" value="MySql"><label for="mysql">MySql</label></li>
+                <li><input name="skill" type="checkbox" id="react" value="React"><label for="react">React</label></li>
+                <li><input name="skill" type="checkbox" id="vue" value="Vue"><label for="vue">Vue</label></li>
+                <li><input name="skill" type="checkbox" id="angular" value="Angular"><label
+                    for="angular">Angular</label></li>
+                <li><input name="skill" type="checkbox" id="jquery" value="JQuery"><label for="jquery">JQuery</label>
+                </li>
+
               </ul>
               <span class="form-message"></span>
             </div>
+
             <button class="form-submit-3">Gửi Thông tin</button>
           </form>
         </div>
@@ -329,13 +344,14 @@
       formGroupSelector: '.form-group',
       errorSelector: '.form-message',
       rules: [
-        Validator.isRequired('#fullname3'),
-        Validator.isRequired('#dayofbirth3'),
-        Validator.isRequired('#phone3'),
-        Validator.isRequired('#email3'),
-        Validator.isRequired('#address3'),
-        Validator.isRequired('#avatar'),
-        Validator.isRequired('input[name="1112"]'),
+        Validator.isRequired('#fullname3','Vui lòng nhập họ và tên !'),
+        Validator.isRequired('#dayofbirth3','Vui lòng chọn ngày sinh !'),
+        Validator.isRequired('#phone3','Vui lòng nhập số điện thoại !'),
+        Validator.isRequired('#email3', 'Vui lòng nhập Email !'),
+        Validator.isEmail('#email3'),
+        Validator.isRequired('#address3','Vui Lòng nhập địa chỉ !'),
+        Validator.isRequired('#avatar','Vui lòng chọn hình ảnh !'),
+        Validator.isRequired('input[name="skill"]','Chọn trên 3 kỹ năng bạn có!'),
       ],
       onSubmit(data) {
         console.log(data)
