@@ -5,30 +5,27 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form Validation 1</title>
+  <title>Validator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,600;1,300&display=swap" rel="stylesheet">
   <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="main">
-    <div class="background-wrapper">
-      <img src="./images/bg-1.jpg" alt="">
-    </div>
     <div class="tabs-content">
       <div class="tabs">
         <ul>
-          <li class="tab-link active">Sign Up</li>
-          <li class="tab-link">Sign In</li>
-          <li class="tab-link">Form 3</li>
+          <li class="tab-link active">Netflix</li>
+          <li class="tab-link">Facebook</li>
+          <li class="tab-link">Thông tin</li>
         </ul>
         <div class="line"></div>
       </div>
       <div class="tabs-wrapper">
-        <div class="tab-panel active">
+        <div class="tab-panel to-right active">
           <form action="" method="POST" class="form" id="form-1">
             <h3 class="heading">Đăng Nhập</h3>
             <div class="form-group">
@@ -47,7 +44,7 @@
               </div>
               <span class="form-message"></span>
             </div>
-            <button class="form-submit">Đăng nhập</button>
+            <button class="form-submit"><i class="far fa-paper-plane"></i> Đăng nhập</button>
             <div class="form-help">
               <div class="login-remember-me">
                 <input type="checkbox" name="" id="remember_me" checked>
@@ -66,15 +63,16 @@
               </div>
               <div class="signup-now">
                 Bạn mới tham gia Netflix?
-                <a href="#">Đăng ký Ngay</a>
+                <a href="#"> Đăng ký Ngay</a>
               </div>
               <p>Trang này được Google reCAPTCHA bảo vệ để đảm bảo bạn không phải là robot.<a href="#">Tìm hiểu
                   thêm.</a></p>
             </div>
           </form>
         </div>
-        <div class="tab-panel">
+        <div class="tab-panel top-down">
           <form action="" class="form-2" id="form-2">
+            <h3 class="heading">Đăng ký </h3>
             <div class="flex-name">
               <div class="form-group">
                 <div class="box">
@@ -217,11 +215,11 @@
                 href="#" target="_blank" rel="nofollow">Chính sách dữ liệu</a> và <a href="#">Chính sách cookie</a> của
               chúng tôi. Bạn có thể nhận
               được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào.</p>
-            <button class="form-submit">Dang Ky</button>
+            <button class="form-submit"><i class="far fa-paper-plane"></i> Dang Ky</button>
           </form>
 
         </div>
-        <div class="tab-panel">
+        <div class="tab-panel to-left">
           <form action="" class="form-3" id="form-3">
             <h3 class="heading">Phiếu gửi thông tin</h3>
             <div class="form-group">
@@ -272,92 +270,21 @@
               <span class="form-message"></span>
             </div>
             <div class="form-group">
+              <h3>Kỹ năng</h3>
               <ul class="ks-cboxtags">
-                <h3>Kỹ năng</h3>
-                <li><input name="skill" type="checkbox" id="html5" value="HTML5" checked><label
-                    for="html5">HTML5</label></li>
-                <li><input name="skill" type="checkbox" id="css3" value="CSS3"><label for="css3">CSS3</label></li>
-                <li><input name="skill" type="checkbox" id="javascript" value="JavaScript"><label
-                    for="javascript">JavaScript</label></li>
-                <li><input name="skill" type="checkbox" id="php" value="PHP"><label for="php">PHP</label></li>
-                <li><input name="skill" type="checkbox" id="python" value="Python"><label for="python">Python</label>
-                </li>
-                <li><input name="skill" type="checkbox" id="git" value="Git"><label for="git">Git</label></li>
-                <li><input name="skill" type="checkbox" id="mysql" value="MySql"><label for="mysql">MySql</label></li>
-                <li><input name="skill" type="checkbox" id="react" value="React"><label for="react">React</label></li>
-                <li><input name="skill" type="checkbox" id="vue" value="Vue"><label for="vue">Vue</label></li>
-                <li><input name="skill" type="checkbox" id="angular" value="Angular"><label
-                    for="angular">Angular</label></li>
-                <li><input name="skill" type="checkbox" id="jquery" value="JQuery"><label for="jquery">JQuery</label>
-                </li>
 
               </ul>
               <span class="form-message"></span>
             </div>
 
-            <button class="form-submit-3">Gửi Thông tin</button>
+            <button class="form-submit-3"><i class="far fa-paper-plane"></i> Gửi Thông tin</button>
           </form>
         </div>
       </div>
     </div>
   </div>
+  <script src="validator.js"></script>
   <script src="main.js"></script>
-  <script>
-    Validator({
-      form: '#form-1',
-      formGroupSelector: '.form-group',
-      errorSelector: '.form-message',
-      rules: [
-        Validator.isEmailAndPhone('#email'),
-        Validator.isRequired('#password', 'Vui lòng nhập mật khẩu'),
-        Validator.minLength('#password', 6),
-      ],
-      onSubmit(data) {
-        console.log(data)
-      }
-    })
-    Validator({
-      form: '#form-2',
-      formGroupSelector: '.form-group',
-      errorSelector: '.form-message',
-      rules: [
-        Validator.isRequired('#firstname', 'Vui lòng nhập Họ'),
-        Validator.isRequired('#lastname', 'Vui lòng nhập Tên'),
-        Validator.isEmailAndPhone('#phoneandemail'),
-        Validator.isRequired('#newpassword', 'Vui lòng nhập mật khẩu'),
-        Validator.minLength('#newpassword', 6),
-        Validator.isRequired('#password_confirmation', 'Vui lòng nhập trường này'),
-        Validator.isRequired('#day', 'Chưa chọn ngày'),
-        Validator.isRequired('#month', 'Chưa chọn tháng'),
-        Validator.isRequired('#year', 'Chưa chọn năm'),
-        Validator.isRequired('input[name="gender"]', 'Vui lòng chọn giới tính'),
-        Validator.isConfirmation('#password_confirmation', () => {
-          return document.querySelector("#form-2 #newpassword").value
-        }, 'Mật khẩu nhập lại không chính xác'),
-      ],
-      onSubmit(data) {
-        console.log(data)
-      }
-    })
-    Validator({
-      form: '#form-3',
-      formGroupSelector: '.form-group',
-      errorSelector: '.form-message',
-      rules: [
-        Validator.isRequired('#fullname3','Vui lòng nhập họ và tên !'),
-        Validator.isRequired('#dayofbirth3','Vui lòng chọn ngày sinh !'),
-        Validator.isRequired('#phone3','Vui lòng nhập số điện thoại !'),
-        Validator.isRequired('#email3', 'Vui lòng nhập Email !'),
-        Validator.isEmail('#email3'),
-        Validator.isRequired('#address3','Vui Lòng nhập địa chỉ !'),
-        Validator.isRequired('#avatar','Vui lòng chọn hình ảnh !'),
-        Validator.isRequired('input[name="skill"]','Chọn trên 3 kỹ năng bạn có!'),
-      ],
-      onSubmit(data) {
-        console.log(data)
-      }
-    })
-  </script>
 </body>
 
 </html>

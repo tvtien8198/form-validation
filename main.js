@@ -1,187 +1,73 @@
-const Validator = (options) => {
-    const SelectorRules = {}
-
-    const formElement = document.querySelector(options.form)
-
-    const getParent = (element, selector) => {
-        while (element.parentElement) {
-            if (element.parentElement.matches(selector)) {
-                return element.parentElement
-            }
-            element = element.parentElement
-        }
+Validator({
+    form: '#form-1',
+    formGroupSelector: '.form-group',
+    errorSelector: '.form-message',
+    rules: [
+      Validator.isEmailAndPhone('#email'),
+      Validator.isRequired('#password', 'Vui lòng nhập mật khẩu'),
+      Validator.minLength('#password', 6),
+    ],
+    onSubmit(data) {
+      console.log(data)
     }
-
-    const validate = (inputElement, rule) => {
-
-        let errorMessage
-        const errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector)
-        const rules = SelectorRules[rule.selector]
-        for (let i = 0; i < rules.length; i++) {
-            switch (inputElement.type) {
-                case 'radio':
-                case 'checkbox':
-                    errorMessage = rules[i](
-                        formElement.querySelector(rule.selector + ':checked')
-                    )
-                    break;
-                default:
-                    errorMessage = rules[i](inputElement.value)
-            }
-            if (errorMessage) break
-        }
-        if (errorMessage) {
-            errorElement.innerText = errorMessage
-            getParent(inputElement, options.formGroupSelector).classList.add("invalid")
-        } else {
-            errorElement.innerText = ""
-            getParent(inputElement, options.formGroupSelector).classList.remove("invalid")
-        }
-        return !errorMessage
+  })
+  Validator({
+    form: '#form-2',
+    formGroupSelector: '.form-group',
+    errorSelector: '.form-message',
+    rules: [
+      Validator.isRequired('#firstname', 'Vui lòng nhập Họ'),
+      Validator.isRequired('#lastname', 'Vui lòng nhập Tên'),
+      Validator.isEmailAndPhone('#phoneandemail'),
+      Validator.isRequired('#newpassword', 'Vui lòng nhập mật khẩu'),
+      Validator.minLength('#newpassword', 6),
+      Validator.isRequired('#password_confirmation', 'Vui lòng nhập trường này'),
+      Validator.isRequired('#day', 'Chưa chọn ngày'),
+      Validator.isRequired('#month', 'Chưa chọn tháng'),
+      Validator.isRequired('#year', 'Chưa chọn năm'),
+      Validator.isRequired('input[name="gender"]', 'Vui lòng chọn giới tính'),
+      Validator.isConfirmation('#password_confirmation', () => {
+        return document.querySelector("#form-2 #newpassword").value
+      }, 'Mật khẩu nhập lại không chính xác'),
+    ],
+    onSubmit(data) {
+      console.log(data)
     }
-    if (formElement) {
-        formElement.onsubmit = (e) => {
-            e.preventDefault()
-            let isFormValid = true
-            options.rules.forEach(rule => {
-                const inputElement = formElement.querySelector(rule.selector)
-                let isValid = validate(inputElement, rule)
-                if (!isValid) {
-                    isFormValid = false
-                }
-            })
-
-            if (isFormValid) {
-                if (typeof options.onSubmit === 'function') {
-                    const enableInput = formElement.querySelectorAll('[name]')
-                    const formValues = Array.from(enableInput).reduce((values, input) => {
-                        switch (input.type) {
-                            case 'radio':
-                                values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value
-                                break
-                            case 'checkbox':
-                                if (!input.matches(':checked')) {
-                                    values[input.name] = '';
-                                    return values;
-                                }
-                                if (!Array.isArray(values[input.name])) {
-                                    values[input.name] = [];
-                                }
-                                values[input.name].push(input.value);
-                                break;
-                            case 'file':
-                                values[input.name] = input.files
-                                break
-                            default:
-                                values[input.name] = input.value
-                        }
-                        return values
-                    }, {})
-
-                    options.onSubmit(formValues)
-                }
-            } else {
-                console.log("co loi")
-            }
-        }
-        options.rules.forEach(rule => {
-            if (Array.isArray(SelectorRules[rule.selector])) {
-                SelectorRules[rule.selector].push(rule.test)
-            } else {
-                SelectorRules[rule.selector] = [rule.test]
-            }
-            const inputElements = formElement.querySelectorAll(rule.selector)
-
-            Array.from(inputElements).forEach(inputElement => {
-
-                const parentInputElement = inputElement.parentElement
-
-                const errorIcon = parentInputElement.querySelector(".fa-exclamation-circle")
-
-                inputElement.onblur = () => {
-                    validate(inputElement, rule)
-                    if (inputElement.value != "") {
-                        inputElement.classList.add("has-text")
-                    } else {
-                        inputElement.classList.remove("has-text")
-                        if (errorIcon) {
-                            errorIcon.classList.add("invalid")
-                        }
-                    }
-                }
-                inputElement.oninput = () => {
-                    const errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector)
-                    errorElement.innerText = ""
-                    getParent(inputElement, options.formGroupSelector).classList.remove("invalid")
-                    if (errorIcon) {
-                        errorIcon.classList.remove("invalid")
-                    }
-                }
-
-            })
-
-        })
+  })
+  Validator({
+    form: '#form-3',
+    formGroupSelector: '.form-group',
+    errorSelector: '.form-message',
+    rules: [
+      Validator.isRequired('#fullname3','Vui lòng nhập họ và tên !'),
+      Validator.isRequired('#dayofbirth3','Vui lòng chọn ngày sinh !'),
+      Validator.isRequired('#phone3','Vui lòng nhập số điện thoại !'),
+      Validator.isRequired('#email3', 'Vui lòng nhập Email !'),
+      Validator.isEmail('#email3'),
+      Validator.isRequired('#address3','Vui Lòng nhập địa chỉ !'),
+      Validator.isRequired('#avatar','Vui lòng chọn hình ảnh !'),
+      Validator.isRequired('input[name="skill"]','Chọn trên 3 kỹ năng bạn có!'),
+    ],
+    onSubmit(data) {
+      console.log(data)
     }
-}
+  })
 
-Validator.isRequired = (selector, message) => {
-    return {
-        selector: selector,
-        test(value) {
-            return value ? undefined : message || "Vui Long nhap truong nay!"
-        }
-    }
-}
+const skill = [
+    {id: 'skill1',name: 'HTML5'},
+    {id: 'skill2',name: 'CSS3'},
+    {id: 'skill3',name: 'PHP'},
+    {id: 'skill4',name: 'JavaScript'},
+    {id: 'skill5',name: 'Git'},
+    {id: 'skill6',name: 'MySql'},
+    {id: 'skill7',name: 'JQuery'},
+    {id: 'skill8',name: 'React'},
+    {id: 'skill9',name: 'Vue'},
+    {id: 'skill10',name: 'Angular'},
+    {id: 'skill11',name: 'UX-UI'},
+]
 
-Validator.isEmail = (selector, message) => {
-    return {
-        selector: selector,
-        test(value) {
-            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return regex.test(value) ? undefined : message || "Trường này phải là Email! "
-        }
-    }
-}
-
-Validator.isPhone = (selector, message) => {
-    return {
-        selector: selector,
-        test(value) {
-            const regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/
-            return regex.test(value) ? undefined : message || "Trường này phải là Số Điện thoại! "
-        }
-    }
-}
-
-Validator.minLength = (selector, min, message) => {
-    return {
-        selector: selector,
-        test(value) {
-            return value.length >= min ? undefined : message || `Vui Lòng nhập tối thiểu ${min} Ký tự`
-        }
-    }
-}
-
-Validator.isConfirmation = (selector, getConfirmValue, message) => {
-    return {
-        selector: selector,
-        test(value) {
-            return value === getConfirmValue() ? undefined : message || " Gia tri nhap khong chinh xac"
-        }
-    }
-}
-
-Validator.isEmailAndPhone = (selector, message) => {
-    return {
-        selector: selector,
-        test(value) {
-            const rePhone = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/
-            const reEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return rePhone.test(value) || reEmail.test(value) ? undefined : message || "Trường này phải là Email hoặc Số điện thoại! "
-        }
-    }
-}
-
+const ks_cboxtags = document.querySelector(".ks-cboxtags")
 
 const tabsLink = document.querySelectorAll(".tab-link")
 
@@ -225,3 +111,11 @@ fileBtn.onclick = () => {
         }
     }
 }
+
+const skills = skill.map(skill => {
+    return `
+    <li><input name="skill" type="checkbox" id="${skill.id}" value="${skill.name}">
+    <label for="${skill.id}">${skill.name}</label></li>
+    `
+})
+ks_cboxtags.innerHTML = skills.join("")
